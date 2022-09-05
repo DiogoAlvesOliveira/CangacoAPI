@@ -3,7 +3,6 @@ package com.dgaandlira.cangaco.dto;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
