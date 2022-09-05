@@ -1,17 +1,17 @@
 package com.dgaandlira.cangaco.resources;
 
-import com.dgaandlira.cangaco.services.TestService;
+import com.dgaandlira.cangaco.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class Test {
+public class UserResource {
 
     @Autowired
-    private TestService testService;
+    private UserService userService;
 
     @GetMapping(value = "/test")
     public String test() {
-        return testService.test();
+        return userService.test();
     }
 }
