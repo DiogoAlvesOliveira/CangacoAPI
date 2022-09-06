@@ -2,6 +2,7 @@ package com.dgaandlira.cangaco.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
@@ -18,6 +19,6 @@ public class UserDTO implements Serializable {
     @NotEmpty(message = "Mandatory completion")
     private String email;
     @NotEmpty(message = "Mandatory completion")
-    @Length(min = 11, max = 14, message = "The length must be between 5 to 80 characters")
+    @CPF
     private String cpf;
 }
