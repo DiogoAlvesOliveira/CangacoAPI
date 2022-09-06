@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 @Entity
 @Data
+@AllArgsConstructor
+@Table(name="tb_user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,4 +26,13 @@ public class User implements Serializable {
     @Column(unique = true)
     private String cpf;
 
+    public User() {
+    }
+
+   /* public User(Integer id, String name, String email, String cpf) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+    }*/
 }
