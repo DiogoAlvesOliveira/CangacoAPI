@@ -13,9 +13,15 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/{cpf}")
-    public ResponseEntity<User> findByCPF() {
-        User user = userService.findByCPF();
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<User> findByCPF(@PathVariable String cpf) {
+        User user = userService.findByCPF(cpf);
+        return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping(value = "/id/{id}")
+    public ResponseEntity<User> findByID(@PathVariable Integer id){
+        User user = userService.findById(id);
         return ResponseEntity.ok().body(user);
     }
 }
