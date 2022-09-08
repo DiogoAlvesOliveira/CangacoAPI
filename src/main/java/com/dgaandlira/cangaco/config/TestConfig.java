@@ -29,7 +29,7 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
-        Provider provider = new Provider(null,"Vitarela", "05.663.071/0001-98","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
+        Provider provider = new Provider(null,"Vitarela", "05663071000198","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
 
         Product product1 = new Product(null, "Biscoito treloso", provider);
         Product product2 = new Product(null, "Macarrão", provider);

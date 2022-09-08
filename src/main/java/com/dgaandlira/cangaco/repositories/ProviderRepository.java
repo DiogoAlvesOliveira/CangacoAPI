@@ -13,4 +13,7 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 
     @Transactional(readOnly = true)
     Optional<Provider> findByName(String name);
+
+    @Transactional(readOnly = true)
+    Optional<Provider> findByCnpj(String cnpj);
 }
