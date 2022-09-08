@@ -25,6 +25,8 @@ public class User implements Serializable {
     private String email;
     @Column(unique = true)
     private String cpf;
+    private String password;
+    private String profile;
 
     public User() {
     }

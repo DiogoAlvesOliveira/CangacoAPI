@@ -18,8 +18,8 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user1 = new User(null, "Diogo", "diogo@gmail.com", "023.186.300-46");
-        User user2 = new User(null, "Carlos", "carlos@gmail.com", "890.525.890-54");
+        User user1 = new User(null, "Diogo", "diogo@gmail.com", "023.186.300-46", "123456", "adm");
+        User user2 = new User(null, "Carlos", "carlos@gmail.com", "890.525.890-54", "123456", "adm");
 
         userRepository.saveAll(Arrays.asList(user1, user2));
     }
