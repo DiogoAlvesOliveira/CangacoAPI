@@ -18,4 +18,9 @@ public class ProductService {
         Optional<Product> product = productRepository.findById(id);
         return product.orElseThrow(()-> new ObjectNotFoundException("Could not find product with id: " + id + ", type: "+ Product.class.getName()));
     }
+
+    public Product findByName(String name) {
+        Optional<Product> product = productRepository.findByName(name);
+        return product.orElseThrow(()-> new ObjectNotFoundException("Couldn't find product with name: " + name + ", type: "+ Product.class.getName()));
+    }
 }
