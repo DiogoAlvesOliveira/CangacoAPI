@@ -29,10 +29,12 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
-        Provider provider = new Provider(null,"Vitarela", "05663071000198","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
+        Provider provider = new Provider("Vitarela", "05663071000198","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
 
-        Product product1 = new Product(null, "Biscoito treloso", provider);
-        Product product2 = new Product(null, "Macarrão", provider);
+        Product product1 = new Product("Biscoito treloso", "Biscoito recheado sabor chocolate 130g", "78945264879", 1.59);
+        Product product2 = new Product("Macarrão", "Macarrão tipo fino 500g", "78945264878", 2.59);
+        product1.setProvider(provider);
+        product2.setProvider(provider);
 
         provider.getProducts().add(product1);
         provider.getProducts().add(product2);

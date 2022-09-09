@@ -36,9 +36,7 @@ public class ProviderService {
     }
     @Transactional
     public Provider insert(Provider provider){
-        provider.setId(null);
-        provider = providerRepository.save(provider);
-        return provider;
+        return providerRepository.save(provider);
     }
     public Provider update(ProviderUpdateDTO providerDTO, Integer id){
         Provider provider = findById(id);
@@ -54,8 +52,7 @@ public class ProviderService {
         }
     }
     public Provider fromDTO(ProviderNewDTO providerDTO){
-        Provider provider = new Provider(null, providerDTO.getName(), providerDTO.getCnpj(), providerDTO.getEmail(),providerDTO.getCep(), providerDTO.getAddress());
-        return provider;
+        return new Provider(providerDTO.getName(), providerDTO.getCnpj(), providerDTO.getEmail(),providerDTO.getCep(), providerDTO.getAddress());
     }
 
     private void updateData(Provider provider, ProviderUpdateDTO providerDTO){

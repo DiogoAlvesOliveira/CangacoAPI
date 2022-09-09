@@ -40,8 +40,8 @@ public class ProviderNewDTO implements Serializable {
     public ProviderNewDTO() {
     }
 
-    public ProviderNewDTO(Integer id, String name, String cnpj, String email, String cep, String address) {
-        this.id = id;
+    public ProviderNewDTO(String name, String cnpj, String email, String cep, String address) {
+        this.id = null;
         this.name = name;
         this.cnpj = cnpj;
         this.email = email;
