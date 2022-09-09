@@ -8,6 +8,7 @@ import com.dgaandlira.cangaco.repositories.ProductRepository;
 import com.dgaandlira.cangaco.services.exceptions.DataIntegrityException;
 import com.dgaandlira.cangaco.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -38,6 +39,14 @@ public class ProductService {
         updateData(product, productDTO);
         return productRepository.save(product);
     }
+    public void delete(Integer id) {
+        findById(id);
+        try {
+            productRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Cannot delete a product that has provider");
+        }
+    }
 
     public Product fromDTO(ProductDTO productDTO) {
         if (productDTO.getName() == null){
@@ -56,4 +65,5 @@ public class ProductService {
         if(productDTO.getBarcode()!= null) product.setBarcode( productDTO.getBarcode());
         if(productDTO.getPrice()!= null) product.setPrice( productDTO.getPrice());
     }
+
 }
