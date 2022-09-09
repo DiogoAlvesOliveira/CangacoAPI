@@ -12,6 +12,7 @@ public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
+
     @NotEmpty(message = "Mandatory completion")
     @Length(min = 5, max = 80, message = "The length must be between 5 to 80 characters")
     private String name;

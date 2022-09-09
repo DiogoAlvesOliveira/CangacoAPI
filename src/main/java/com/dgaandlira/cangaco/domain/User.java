@@ -2,7 +2,6 @@ package com.dgaandlira.cangaco.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
