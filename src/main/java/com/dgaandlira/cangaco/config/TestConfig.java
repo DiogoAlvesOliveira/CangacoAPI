@@ -31,8 +31,8 @@ public class TestConfig implements CommandLineRunner {
 
         Provider provider = new Provider(null,"Vitarela", "05663071000198","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
 
-        Product product1 = new Product(null, "Biscoito treloso", provider);
-        Product product2 = new Product(null, "Macarrão", provider);
+        Product product1 = new Product(null, "Biscoito treloso", "Biscoito recheado sabor chocolate 130g", 78945264879L, 1.59, provider);
+        Product product2 = new Product(null, "Macarrão", "Macarrão tipo fino 500g", 78945264878L, 2.59, provider);
 
         provider.getProducts().add(product1);
         provider.getProducts().add(product2);
