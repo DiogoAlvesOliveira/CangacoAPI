@@ -1,6 +1,7 @@
 package com.dgaandlira.cangaco.services;
 
 
+import com.dgaandlira.cangaco.domain.Provider;
 import com.dgaandlira.cangaco.domain.User;
 import com.dgaandlira.cangaco.repositories.UserRepository;
 
@@ -19,10 +20,10 @@ public class UserService {
 
     public User findByCPF(String cpf){
         Optional<User> user = userRepository.findByCpf(cpf);
-        return user.orElseThrow(()-> new ObjectNotFoundException("Could not find user by CPF: " + cpf));
+        return user.orElseThrow(()-> new ObjectNotFoundException("Could not find user by CPF: " + cpf + ", type: " + User.class.getName()));
     }
     public User findById(Integer id){
         Optional<User> user = userRepository.findById(id);
-        return user.orElseThrow(()-> new ObjectNotFoundException("Could not find user by id: " + id));
+        return user.orElseThrow(()-> new ObjectNotFoundException("Could not find user by id: " + id + ", type: " + User.class.getName()));
     }
 }

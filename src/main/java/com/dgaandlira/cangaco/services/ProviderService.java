@@ -23,16 +23,16 @@ public class ProviderService {
 
     public Provider findById(Integer id) {
         Optional<Provider> provider = providerRepository.findById(id);
-        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + id));
+        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + id + ", type: " + Provider.class.getName()));
     }
     public Provider findByName(String name) {
         Optional<Provider> provider = providerRepository.findByName(name);
-        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + name));
+        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + name + ", type: " + Provider.class.getName()));
     }
 
     public Provider findByCnpj(String cnpj) {
         Optional<Provider> provider = providerRepository.findByCnpj(cnpj);
-        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + cnpj));
+        return provider.orElseThrow(()-> new ObjectNotFoundException("Could not find provider: " + cnpj + ", type: " + Provider.class.getName()));
     }
     @Transactional
     public Provider insert(Provider provider){
