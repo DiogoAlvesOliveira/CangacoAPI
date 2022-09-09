@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Product implements Serializable {
     private String name;
     private String description;
     @Column(unique = true)
-    private Long barcode;
+    private String barcode;
     private Double price;
 
     @JsonIgnore
@@ -43,12 +44,11 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Integer id, String name, String description, Long barcode, Double price, Provider provider) {
-        this.id = id;
+    public Product(String name, String description, String barcode, Double price) {
+        this.id = null;
         this.name = name;
         this.description = description;
         this.barcode = barcode;
         this.price = price;
-        this.provider = provider;
     }
 }

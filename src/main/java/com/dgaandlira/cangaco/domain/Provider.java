@@ -31,8 +31,8 @@ public class Provider implements Serializable {
     public Provider() {
     }
 
-    public Provider(Integer id, String name, String cnpj, String email, String cep, String address) {
-        this.id = id;
+    public Provider(String name, String cnpj, String email, String cep, String address) {
+        this.id = null;
         this.name = name;
         this.cnpj = cnpj;
         this.email = email;
