@@ -2,6 +2,7 @@ package com.dgaandlira.cangaco.resources;
 
 import com.dgaandlira.cangaco.domain.Provider;
 import com.dgaandlira.cangaco.dto.ProviderNewDTO;
+import com.dgaandlira.cangaco.dto.ProviderUpdateDTO;
 import com.dgaandlira.cangaco.services.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,5 +35,15 @@ public class ProviderResource {
         provider = providerService.insert(provider);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(provider.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Provider> delete(@PathVariable Integer id) {
+        providerService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Provider> update(@RequestBody ProviderUpdateDTO providerUpdateDTO, @PathVariable Integer id){
+        Provider provider = providerService.update(providerUpdateDTO, id);
+        return ResponseEntity.noContent().build();
     }
 }
