@@ -1,7 +1,7 @@
 package com.dgaandlira.cangaco.resources;
 
 import com.dgaandlira.cangaco.domain.Product;
-import com.dgaandlira.cangaco.dto.ProductNewDTO;
+import com.dgaandlira.cangaco.dto.ProductDTO;
 import com.dgaandlira.cangaco.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +28,15 @@ public class ProductResource {
         return ResponseEntity.ok().body(product);
     }
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody ProductNewDTO productDTO){
+    public ResponseEntity<Void> insert(@RequestBody ProductDTO productDTO){
         Product product = productService.fromDTO(productDTO);
         product = productService.insert(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(product.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Product> update(@PathVariable Integer id, @RequestBody ProductDTO productDTO){
+        Product product = productService.update(id, productDTO);
+        return ResponseEntity.noContent().build();
     }
 }
