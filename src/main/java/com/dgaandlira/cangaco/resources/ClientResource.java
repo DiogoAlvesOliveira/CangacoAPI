@@ -21,4 +21,9 @@ public class ClientResource {
         Client client = clientService.findByName(name);
         return ResponseEntity.ok().body(client);
     }
+    @GetMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<Client> findByCpf(@PathVariable String cpf) {
+        Client client = clientService.findByCpf(cpf);
+        return ResponseEntity.ok().body(client);
+    }
 }

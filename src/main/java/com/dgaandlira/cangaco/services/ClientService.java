@@ -23,4 +23,9 @@ public class ClientService {
         Optional<Client> client = clientRepository.findByName(name);
         return client.orElseThrow(()-> new ObjectNotFoundException("Could not find client " + name + " , type: " + Client.class.getName()));
     }
+
+    public Client findByCpf(String cpf) {
+        Optional<Client> client = clientRepository.findByCpf(cpf);
+        return client.orElseThrow(()-> new ObjectNotFoundException("Could not find client " + cpf + " , type: " + Client.class.getName()));
+    }
 }
