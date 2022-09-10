@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class Product implements Serializable {
     @ManyToMany
     @JoinTable(name="PRODUCT_SALLER",joinColumns = @JoinColumn(name="product_id"),
     inverseJoinColumns = @JoinColumn(name="saller_id"))
-    private List<Saller> sallers = new ArrayList<>();
+    private List<Seller> sellers = new ArrayList<>();
     public Product() {
     }
 
