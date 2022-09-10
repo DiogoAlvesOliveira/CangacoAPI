@@ -1,6 +1,7 @@
 package com.dgaandlira.cangaco.services;
 
 import com.dgaandlira.cangaco.domain.Client;
+import com.dgaandlira.cangaco.dto.ClientNewDTO;
 import com.dgaandlira.cangaco.repositories.ClientRepository;
 import com.dgaandlira.cangaco.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,15 @@ public class ClientService {
     public Client findByCpf(String cpf) {
         Optional<Client> client = clientRepository.findByCpf(cpf);
         return client.orElseThrow(()-> new ObjectNotFoundException("Could not find client " + cpf + " , type: " + Client.class.getName()));
+    }
+
+
+    public Client insert(Client client) {
+        return clientRepository.save(client);
+    }
+
+    public Client fromDTO(ClientNewDTO clientNewDTO) {
+        Client client = new Client(clientNewDTO.getName(), clientNewDTO.getSurname(), clientNewDTO.getCpf(), clientNewDTO.getEmail(), clientNewDTO.getBirthDate(), clientNewDTO.getCep(), clientNewDTO.getAddress());
+        return client;
     }
 }

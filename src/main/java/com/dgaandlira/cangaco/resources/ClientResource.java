@@ -1,13 +1,14 @@
 package com.dgaandlira.cangaco.resources;
 
 import com.dgaandlira.cangaco.domain.Client;
+import com.dgaandlira.cangaco.dto.ClientNewDTO;
 import com.dgaandlira.cangaco.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -25,5 +26,12 @@ public class ClientResource {
     public ResponseEntity<Client> findByCpf(@PathVariable String cpf) {
         Client client = clientService.findByCpf(cpf);
         return ResponseEntity.ok().body(client);
+    }
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody ClientNewDTO clientNewDTO){
+        Client client = clientService.fromDTO(clientNewDTO);
+        client = clientService.insert(client);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(client.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
