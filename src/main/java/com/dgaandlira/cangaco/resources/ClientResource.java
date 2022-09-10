@@ -2,6 +2,7 @@ package com.dgaandlira.cangaco.resources;
 
 import com.dgaandlira.cangaco.domain.Client;
 import com.dgaandlira.cangaco.dto.ClientNewDTO;
+import com.dgaandlira.cangaco.dto.ClientUpdateDTO;
 import com.dgaandlira.cangaco.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,11 @@ public class ClientResource {
         client = clientService.insert(client);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(client.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Client> update(@PathVariable Integer id, @RequestBody ClientUpdateDTO clientUpdateDTO) {
+        Client client = clientService.update(id, clientUpdateDTO);
+        return ResponseEntity.noContent().build();
+
     }
 }

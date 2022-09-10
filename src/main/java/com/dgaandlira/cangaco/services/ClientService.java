@@ -2,6 +2,7 @@ package com.dgaandlira.cangaco.services;
 
 import com.dgaandlira.cangaco.domain.Client;
 import com.dgaandlira.cangaco.dto.ClientNewDTO;
+import com.dgaandlira.cangaco.dto.ClientUpdateDTO;
 import com.dgaandlira.cangaco.repositories.ClientRepository;
 import com.dgaandlira.cangaco.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,30 @@ public class ClientService {
     public Client insert(Client client) {
         return clientRepository.save(client);
     }
+    public Client update(Integer id, ClientUpdateDTO clientUpdateDTO) {
+        Client client = findById(id);
+        updateData(client, clientUpdateDTO);
+        return clientRepository.save(client);
+    }
 
     public Client fromDTO(ClientNewDTO clientNewDTO) {
-        Client client = new Client(clientNewDTO.getName(), clientNewDTO.getSurname(), clientNewDTO.getCpf(), clientNewDTO.getEmail(), clientNewDTO.getBirthDate(), clientNewDTO.getCep(), clientNewDTO.getAddress());
-        return client;
+        return new Client(
+                clientNewDTO.getName(),
+                clientNewDTO.getSurname(),
+                clientNewDTO.getCpf(),
+                clientNewDTO.getEmail(),
+                clientNewDTO.getBirthDate(),
+                clientNewDTO.getCep(),
+                clientNewDTO.getAddress());
     }
+    private void updateData(Client client, ClientUpdateDTO clientUpdateDTO) {
+        if(clientUpdateDTO.getName() != null) client.setName(clientUpdateDTO.getName());
+        if(clientUpdateDTO.getSurname()!= null) client.setSurname(clientUpdateDTO.getSurname());
+        if(clientUpdateDTO.getCpf() != null) client.setCpf(clientUpdateDTO.getCpf());
+        if(clientUpdateDTO.getEmail() != null) client.setEmail(clientUpdateDTO.getEmail());
+        if(clientUpdateDTO.getBirthDate() != null) client.setBirthDate(clientUpdateDTO.getBirthDate());
+        if(clientUpdateDTO.getCep() != null) client.setCep(clientUpdateDTO.getCep());
+        if(clientUpdateDTO.getAddress() != null) client.setAddress(clientUpdateDTO.getAddress());
+    }
+
 }
