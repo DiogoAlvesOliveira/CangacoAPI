@@ -31,7 +31,7 @@ public class Client implements Serializable{
     private String cep;
     private String address;
 
-    @ManyToMany(mappedBy="clients")
+    @ManyToMany(mappedBy="clientsProduct")
     private List<Product> products = new ArrayList<>();
 
     @JsonIgnore
