@@ -31,8 +31,13 @@ public class SellerResource {
         return ResponseEntity.created(uri).build();
     }
     @PutMapping(value = "/{cpf}")
-    public ResponseEntity<SellerDTO> update(@PathVariable String cpf, @RequestBody SellerNewDTO sellerNewDTO){
+    public ResponseEntity<Seller> update(@PathVariable String cpf, @RequestBody SellerNewDTO sellerNewDTO){
         Seller seller = sellerService.update(cpf, sellerNewDTO);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Seller> delete(@PathVariable Integer id){
+        sellerService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

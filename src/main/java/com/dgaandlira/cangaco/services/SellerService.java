@@ -6,8 +6,10 @@ import com.dgaandlira.cangaco.domain.Seller;
 import com.dgaandlira.cangaco.dto.SellerDTO;
 import com.dgaandlira.cangaco.dto.SellerNewDTO;
 import com.dgaandlira.cangaco.repositories.SellerRepository;
+import com.dgaandlira.cangaco.services.exceptions.DataIntegrityException;
 import com.dgaandlira.cangaco.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +49,14 @@ public class SellerService {
         if(sellerNewDTO.getEmail() != null) seller.setEmail(sellerNewDTO.getEmail());
         if (sellerNewDTO.getRegistration() != null) seller.setRegistration(sellerNewDTO.getRegistration());
         if (sellerNewDTO.getPassword() != null) seller.setPassword(sellerNewDTO.getPassword());
+    }
+    public void delete(Integer id) {
+        Optional<Seller> seller = sellerRepository.findById(id);
+        try {
+            sellerRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Cannot delete a provider that has product");
+        }
     }
 
     private Seller fromDTO(SellerNewDTO sellerDTO) {
