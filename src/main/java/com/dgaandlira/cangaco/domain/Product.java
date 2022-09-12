@@ -33,13 +33,13 @@ public class Product implements Serializable {
     @ManyToMany
     @JoinTable(name="PRODUCT_CLIENT", joinColumns = @JoinColumn(name="product_id"),
     inverseJoinColumns = @JoinColumn(name="client_id"))
-    private List<Client> clients = new ArrayList<>();
+    private List<Client> clientsProduct = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany
-    @JoinTable(name="PRODUCT_SALLER",joinColumns = @JoinColumn(name="product_id"),
-    inverseJoinColumns = @JoinColumn(name="saller_id"))
-    private List<Seller> sellers = new ArrayList<>();
+    @JoinTable(name="PRODUCT_SELLER",joinColumns = @JoinColumn(name="product_id"),
+    inverseJoinColumns = @JoinColumn(name="seller_id"))
+    private List<Seller> sellersProduct = new ArrayList<>();
     public Product() {
     }
 

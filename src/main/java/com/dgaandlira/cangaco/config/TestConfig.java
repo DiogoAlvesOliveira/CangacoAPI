@@ -1,13 +1,7 @@
 package com.dgaandlira.cangaco.config;
 
-import com.dgaandlira.cangaco.domain.Client;
-import com.dgaandlira.cangaco.domain.Product;
-import com.dgaandlira.cangaco.domain.Provider;
-import com.dgaandlira.cangaco.domain.User;
-import com.dgaandlira.cangaco.repositories.ClientRepository;
-import com.dgaandlira.cangaco.repositories.ProductRepository;
-import com.dgaandlira.cangaco.repositories.ProviderRepository;
-import com.dgaandlira.cangaco.repositories.UserRepository;
+import com.dgaandlira.cangaco.domain.*;
+import com.dgaandlira.cangaco.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +29,8 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private SellerRepository sellerRepository;
     @Override
     public void run(String... args) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -60,8 +56,12 @@ public class TestConfig implements CommandLineRunner {
         client1.getProducts().add(product1);
         client2.setProducts(product2);
 
-
         clientRepository.saveAll(Arrays.asList(client1, client2));
+
+        Seller seller1 = new Seller("Mario","02857774087","mario@gmail.com","20221","123456");
+        Seller seller2 = new Seller("Darlan","78366495043","darlan@gmail.com","20222","123456");
+
+        sellerRepository.saveAll(Arrays.asList(seller1, seller2));
 
     }
 }
