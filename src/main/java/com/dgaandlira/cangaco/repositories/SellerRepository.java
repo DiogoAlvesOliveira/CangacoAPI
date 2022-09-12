@@ -10,6 +10,4 @@ public interface SellerRepository extends JpaRepository<Seller, Integer> {
 
     @Transactional(readOnly = true)
     Seller findByCpf(String cpf);
-    @Transactional(readOnly = true)
-    Seller deleteByCpf(String cpf);
 }

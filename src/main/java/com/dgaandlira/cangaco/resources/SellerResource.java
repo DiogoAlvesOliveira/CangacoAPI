@@ -40,4 +40,9 @@ public class SellerResource {
         sellerService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping(value = "/cpf/{cpf}")
+    public ResponseEntity<Seller> deleteByCpf(@PathVariable String cpf){
+        sellerService.deleteByCpf(cpf);
+        return ResponseEntity.noContent().build();
+    }
 }
