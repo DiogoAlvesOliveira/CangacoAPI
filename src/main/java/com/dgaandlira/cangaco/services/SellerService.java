@@ -58,6 +58,14 @@ public class SellerService {
             throw new DataIntegrityException("Cannot delete a provider that has product");
         }
     }
+    public void deleteByCpf(String cpf) {
+        Seller seller = sellerRepository.findByCpf(cpf);
+        try {
+            sellerRepository.delete(seller);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Cannot delete a provider that has product");
+        }
+    }
 
     private Seller fromDTO(SellerNewDTO sellerDTO) {
         return new Seller(sellerDTO.getName(),sellerDTO.getCpf() , sellerDTO.getEmail(), sellerDTO.getRegistration(),sellerDTO.getPassword());
