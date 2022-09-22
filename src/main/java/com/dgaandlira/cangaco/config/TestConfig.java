@@ -2,12 +2,15 @@ package com.dgaandlira.cangaco.config;
 
 import com.dgaandlira.cangaco.domain.*;
 import com.dgaandlira.cangaco.repositories.*;
+import com.dgaandlira.cangaco.services.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
@@ -15,53 +18,14 @@ import java.util.Date;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner {
+public class TestConfig {
 
     @Autowired
-    private UserRepository userRepository;
+    private DBService dbService;
 
-    @Autowired
-    private ProviderRepository providerRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private SellerRepository sellerRepository;
-    @Override
-    public void run(String... args) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        User user1 = new User(null, "Diogo", "diogo@gmail.com", "023.186.300-46", "123456", "adm");
-        User user2 = new User(null, "Carlos", "carlos@gmail.com", "890.525.890-54", "123456", "adm");
-
-        userRepository.saveAll(Arrays.asList(user1, user2));
-
-        Provider provider = new Provider("Vitarela", "05663071000198","vitarela@gmail.com","53433-220","Rua José Ramos de Vasconcelos, 1079, Pau Amarelo");
-
-        Product product1 = new Product("Biscoito treloso", "Biscoito recheado sabor chocolate 130g", "78945264879", 1.59);
-        Product product2 = new Product("Macarrão", "Macarrão tipo fino 500g", "78945264878", 2.59);
-        product1.setProvider(provider);
-        product2.setProvider(provider);
-
-        provider.getProducts().add(product1);
-        provider.getProducts().add(product2);
-
-        providerRepository.save(provider);
-
-        Client client1 = new Client("Patricia","Venceslau", "60281607095", "paty@gmail.com", sdf.parse ("10/01/1986"), "53433-220", "Rua José Ramos de Vasconcelos, 1079, Pau Amarelo, Paulista");
-        Client client2 = new Client("Renata","Lira", "92722802066", "renata@gmail.com", sdf.parse ("10/01/1987"), "52140-310", "Rua Joaquim de França, 171, Dois Unidos, Recife");
-        client1.getProducts().add(product1);
-        client2.setProducts(product2);
-
-        clientRepository.saveAll(Arrays.asList(client1, client2));
-
-        Seller seller1 = new Seller("Mario","02857774087","mario@gmail.com","20221","123456");
-        Seller seller2 = new Seller("Darlan","78366495043","darlan@gmail.com","20222","123456");
-
-        sellerRepository.saveAll(Arrays.asList(seller1, seller2));
-
+    @Bean
+    public boolean instantiateTestDatabase() throws ParseException {
+        dbService.instantiateTestDatabase();
+        return true;
     }
 }
